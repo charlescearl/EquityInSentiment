@@ -1,0 +1,55 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+```{r}
+library(gdata)
+library(ggpubr)
+library(wesanderson)
+```
+```{r}
+racial_data  = read.csv("~/Project/EquityInSentiment/race_data_with_scores.csv")
+gender_data  = read.csv("~/Project/EquityInSentiment/gender_data_with_scores.csv")
+
+```
+
+Now plot the data
+```{r}
+ggboxplot(racial_data, y = "AWS.Score", x = "Race", palette = wes_palette("GrandBudapest2"),
+          facet.by = "Emotion", color = "Race", add = "jitter",
+          legend = "none", 
+          title = "AWS scores Black names score angrier than European names.") +
+   stat_compare_means(label.y.npc = 0.7) 
+```
+```{r}
+ggboxplot(gender_data, y = "AWS.Score", x = "Gender", facet.by = "Emotion", color = "Gender", palette = wes_palette("GrandBudapest2"), add = "jitter", legend = "none", title = "AWS Comprehend scores men are angrier than women.") + stat_compare_means(label.y.npc = 0.7)
+```
+```{r}
+ggboxplot(gender_data, y = "Google.Score", x = "Gender", facet.by = "Emotion", color = "Gender", palette = wes_palette("GrandBudapest2"), add = "jitter", legend = "none", title = "Google is balanced in scoring emotions by gender.") + stat_compare_means(label.y.npc = 0.1)
+```
+
+```{r}
+ggboxplot(racial_data, y = "Google.Score", x = "Race", 
+          facet.by = "Emotion", color = "Race", add = "jitter", 
+          legend = "none", palette = wes_palette("GrandBudapest2"),
+          title = "Google is slightly more balanced in scoring -- aside from sadness.") + stat_compare_means(label.y.npc = 0.1)
+
+```
+```{r}
+names(wes_palettes)
+```
+
