@@ -7,7 +7,7 @@ on a test corpus [described here](http://aclweb.org/anthology/S18-2005.pdf).
 
 The [EvaluateSentimentScores.ipynb](EvaluateSentimentScores.ipynb) notebook loads the corpus
 and runs sentences from the corpus on the Google and AWS services respectively. The
-notebook [Evaluate Cloud Sentiment Bias.ipynb](Evaluate Cloud Sentiment Bias.ipynb) then
+notebook [EvaluateCloudSentimentBias.ipynb](EvaluateCloudSentimentBias.ipynb) then
 computes statistical significance of the results and produces a set of visualizations.
 
 
